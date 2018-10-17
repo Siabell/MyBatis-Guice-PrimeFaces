@@ -17,5 +17,6 @@ public interface TipoItemMapper {
     public TipoItem getTipoItem(int id);
     
     public void addTipoItem(String des);
+    
 
 }

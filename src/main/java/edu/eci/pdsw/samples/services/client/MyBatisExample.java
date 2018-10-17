@@ -17,10 +17,15 @@
 package edu.eci.pdsw.samples.services.client;
 
 
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.*;
+import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.TipoItem;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Date;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -61,11 +66,37 @@ public class MyBatisExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
-
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        System.out.println("Consultar clientes-----------------------------------------");
+        System.out.println(cm.consultarItemRentado(100).toString());
+        /*System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println("Consultar cliente------------------------------------------- ");
+        System.out.println(cm.consultarCliente(317658));
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println("insertar item rentado------------------------------------------- ");	   
+		//cm.agregarItemRentadoACliente(317658,113688954,new Date(2018,01,05),new Date(2018,01,15));
+		System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println("insertar item------------------------------------------- ");	 
+        TipoItem tipo = new TipoItem(5,"producto");
+        Item insertar = new Item(tipo,113659853,"maravilla"," es una maravilla" , new Date(118,9,15),10000,"gota a gota","literario");
+        ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        //im.insertarItem(insertar);
+        System.out.println(im.consultarItem(113659853).toString());
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println("Consultar items------------------------------------------- ");
+        System.out.println(im.consultarItems());*/
         
-        //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
+        
+        
+        
         
         
         
