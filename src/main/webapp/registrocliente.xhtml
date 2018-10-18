@@ -8,14 +8,8 @@
 <h:head>
 	<title></title>
 </h:head>
-<<<<<<< HEAD
 <h:body onload="#{alquilerItemsBean.turnValido(1)}">
 	<h1>insertar cliente</h1>
-
-=======
-<h:body>
-	<h1>Registro cliente</h1>
->>>>>>> 7427ed32dd2006d635c8cb82c5a9466a54338bae
 	<h:form id="cliente_form" >
 		nombre: 
 		<p:inputText id="nombreA"  binding="#{nombreA}" required="true" label="nombre"/>
@@ -31,7 +25,6 @@
 		<p:selectBooleanCheckbox id="vetadoA" binding="#{vetadoA}" /><br></br><br></br>
 		<p:commandButton id="agregar" update="cliente_form" value="agregar Cliente" actionListener="#{alquilerItemsBean.registrarCliente(nombreA.value,documentoA.value,telefonoA.value,direccionA.value, emailA.value, vetadoA.value)}" /><br></br><br></br>
 		<p:dataTable id="cliente_table" var="cliente" value="#{alquilerItemsBean.consultarClientes()}">
-<<<<<<< HEAD
 				<p:column headerText="nombre">
 						<h:outputText value="#{cliente.nombre}" />
 					</p:column>
@@ -53,29 +46,7 @@
 					<p:column headerText="Rentados">
 						<p:button  outcome="registroalquiler?docu=#{cliente.documento}" value="View Rentados"  />
 					</p:column>
-=======
-		<p:column headerText="nombre">
-			<h:outputText value="#{cliente.nombre}" />
-		</p:column>
-		<p:column headerText="documento">
-			<h:outputText value="#{cliente.documento}" />
-		</p:column>
-		<p:column headerText="telefono">
-			<h:outputText value="#{cliente.telefono}" />
-		</p:column>
-		<p:column headerText="direccion">
-			<h:outputText value="#{cliente.direccion}" />
-		</p:column>
-		<p:column headerText="email">
-			<h:outputText value="#{cliente.email}" />
-		</p:column>
-		<p:column headerText="vetado">
-			<h:outputText value="#{cliente.vetado}" />
-		</p:column>
-		<p:column headerText="Rentados">
-			<p:button value="View Rentados" />
-		</p:column>
->>>>>>> 7427ed32dd2006d635c8cb82c5a9466a54338bae
+
 		</p:dataTable>
 	</h:form>
 

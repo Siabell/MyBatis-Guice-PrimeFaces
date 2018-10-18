@@ -74,8 +74,8 @@ public class AlquilerItemsBean extends BasePageBean {
 	public void setDocu(int doc){
 		System.out.println(valido);
 		if(valido) {
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
-		this.docu=doc;
+			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
+			this.docu=doc;
 		}
 	}
 	
