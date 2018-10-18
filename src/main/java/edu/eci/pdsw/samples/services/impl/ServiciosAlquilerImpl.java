@@ -13,6 +13,8 @@ import edu.eci.pdsw.samples.entities.TipoItem;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
 import java.sql.Date;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -45,7 +47,8 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler {
        try {
-    	   return clienteDAO.load((int) idcliente).getRentados();
+    	   
+    	   return clienteDAO.loadItemsCliente((int) idcliente);
     	   
        }
        catch (PersistenceException ex) {
@@ -85,7 +88,21 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
     */
    @Override
    public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
-       return 1000;
+       try {
+    	   Calendar c=Calendar.getInstance();
+    	   c.setTime(fechaDevolucion);
+    	   Calendar today = Calendar.getInstance();
+    	   today.set(Calendar.HOUR_OF_DAY, 0);
+    	   int d=0;
+    	   if(fechaDevolucion.after(today.getTime())) {
+    		   d = (int) ChronoUnit.DAYS.between(c.toInstant(),today.toInstant());
+    	   }
+    	   return itemDAO.load(iditem).getTarifaxDia()*d;
+       }
+       catch (PersistenceException ex) {
+           throw new ExcepcionServiciosAlquiler("No existe el item ",ex);
+       }
+       
    }
 
    @Override
@@ -109,6 +126,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
 	   try {
+		   
            clienteDAO.agregarItemRentadoACliente(date, docu,  item, numdias);
        } catch (PersistenceException ex) {
            throw new ExcepcionServiciosAlquiler("No se pudo registrar el alquiler",ex);

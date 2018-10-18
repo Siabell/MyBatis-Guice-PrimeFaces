@@ -37,6 +37,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
   @Override
   public Cliente load(int id) throws PersistenceException {
   try{
+	  
       return clienteMapper.consultarCliente(id);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
@@ -44,7 +45,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
   }
   }
   
- 
+  @Override
   public List<ItemRentado> loadItemsCliente (int id) throws PersistenceException {
   try{
       return clienteMapper.consultarItemsCliente(id);
@@ -74,9 +75,14 @@ public class MyBATISClienteDAO implements ClienteDAO{
 		    calendar.setTime(date); // Configuramos la fecha que se recibe
 		  
 		    calendar.add(Calendar.DAY_OF_YEAR, numdias);
-		    Date dev = (Date) calendar.getTime();
+		    java.util.Date dev = calendar.getTime();
 		    
-		  clienteMapper.agregarItemRentadoACliente((int) docu, item.getId(),date,dev);
+		    java.sql.Date ss = new java.sql.Date(date.getTime());
+		    
+		    java.sql.Date sd = new java.sql.Date(dev.getTime());
+		    
+		    
+		    clienteMapper.agregarItemRentadoACliente((int) docu, item.getId(),ss,sd);
 		  
 	  }
 	  catch(org.apache.ibatis.exceptions.PersistenceException e) {

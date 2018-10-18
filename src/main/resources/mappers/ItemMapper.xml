@@ -12,7 +12,7 @@
 	
 	
 	<select parameterType="map" id="consultarItem" resultMap="ItemResult">
-			select * FROM VI_ITEMS as c	where c.id= #{it};
+			select c.id,c.nombre,c.descripcion, c.fechalanzamiento, c.tarifaxdia,c.formatorenta,c.genero ,c.TIPOITEM_id as tipoItem_id FROM VI_ITEMS as c	where c.id= #{it};
 	</select>
 	
 	<select parameterType="map" id="consultarItems" resultMap="ItemResult">

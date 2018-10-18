@@ -27,7 +27,7 @@
 	</insert>
 	
 	<select parameterType="map" id="consultarItemsCliente" resultMap="ItemRentadoResult">
-			select * from VI_ITEMRENTADO as ir where ir.CLIENTES_documento=#{idc};
+			select ir.id, it.id as item_id, it.nombre as item_nombre, it.descripcion as item_descripcion, ir.fechainiciorenta, ir.fechafinrenta from VI_ITEMS as it, VI_ITEMRENTADO as ir where it.id=ir.ITEMS_id and ir.CLIENTES_documento=#{idc} ;
 	</select>
 	
 	<select parameterType="map" id="consultarTClientes" resultMap="ClienteResult">

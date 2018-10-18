@@ -7,6 +7,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.ItemRentado;
 
 public interface ClienteDAO {
 	
@@ -19,5 +20,7 @@ public interface ClienteDAO {
 	public void agregarItemRentadoACliente(Date date, long docu, Item item, int numdias) throws PersistenceException;
 
 	public void updateVetarCliente (long docu, boolean estado) throws PersistenceException;
+	
+	public List<ItemRentado> loadItemsCliente(int id) throws PersistenceException;
 	
 }

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body onload="#{alquilerItemsBean.turnValido(0)}">
+	<h1>registrar alquiler</h1>
+	<h:form id="alquiler_form" >
+		Id item: 
+		<p:inputText id="idItem"  binding="#{idItem}" required="true" label="idItem">
+		</p:inputText>
+		Cant. dias: 
+		<p:inputText id="cantDias" binding="#{cantDias}" required="true" label="cantDias">
+		</p:inputText>
+		
+		<p:commandButton id="calcular" update="valorR" value="calcular valor" actionListener="#{alquilerItemsBean.consultarValorRenta(idItem.value,cantDias.value)}" />
+		<h:outputLabel id="valorR" value="#{alquilerItemsBean.valor}" /><br></br>
+		
+		
+		<p:commandButton id="agregar" update="ocupado" value="agregar alquiler" actionListener="#{alquilerItemsBean.registrarAlquiler(idItem.value,cantDias.value)}" />	
+		<h:outputLabel id="ocupado" value="#{alquilerItemsBean.disponible}" /><br></br>
+		
+		
+		
+		<p:dataTable id="items_table" var="itemR" value="#{alquilerItemsBean.consultarItemsCliente()}">
+			<p:column headerText="id">
+				<h:outputText value="#{itemR.id}" />
+			</p:column>
+			<p:column headerText="Item Id">
+				<h:outputText value="#{itemR.item.id}" />
+			</p:column>
+			<p:column headerText="Item nombre">
+				<h:outputText value="#{itemR.item.nombre}" />
+			</p:column>
+			<p:column headerText="fecha incio renta">
+				<h:outputText value="#{itemR.fechainiciorenta}" />
+			</p:column>
+			<p:column headerText="fecha fin renta">
+				<h:outputText value="#{itemR.fechafinrenta}" />
+			</p:column>
+	</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>
+
