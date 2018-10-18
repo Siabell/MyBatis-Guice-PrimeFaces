@@ -81,11 +81,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    /**
-    * falta
+    * falta arreglar
     */
    @Override
    public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+       return 1000;
    }
 
    @Override

@@ -30,7 +30,7 @@
 			select * from VI_ITEMRENTADO as ir where ir.CLIENTES_documento=#{idc};
 	</select>
 	
-	<select parameterType="map" id="consultarTClientes" resultMap="ItemRentadoResult">
+	<select parameterType="map" id="consultarTClientes" resultMap="ClienteResult">
 			select c.nombre, c.documento, c.telefono, c.direccion, c.email, c.vetado FROM VI_CLIENTES as c;
 	</select>
 	

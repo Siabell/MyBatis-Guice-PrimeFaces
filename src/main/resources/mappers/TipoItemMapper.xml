@@ -5,7 +5,7 @@
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper">
 
-	<select parameterType="map" id="getTiposItems" resultMap="ItemResult">
+	<select parameterType="map" id="getTiposItems" resultMap="TipoItemResult">
 		select * FROM VI_TIPOITEM;
 	</select>
 	

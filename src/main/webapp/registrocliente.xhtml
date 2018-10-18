@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<h1>insertar cliente</h1>
+	<h:form id="cliente_form" >
+		nombre: 
+		<p:inputText id="nombreA"  binding="#{nombreA}" required="true" label="nombre"/>
+		documento: 
+		<p:inputText id="documentoA" binding="#{documentoA}" required="true" label="documento"/>
+		Telefono: 
+		<p:inputText id="telefonoA" binding="#{telefonoA}" required="true" label="telefono"/><br></br>
+		Direccion: 
+		<p:inputText id="direccionA" binding="#{direccionA}" required="true" label="direccion"/>
+		email: 
+		<p:inputText id="emailA" binding="#{emailA}" required="true" label="email"/>
+		vetado: 
+		<p:selectBooleanCheckbox id="vetadoA" binding="#{vetadoA}" /><br></br>
+		<p:commandButton id="agregar" update="cliente_form" value="agregar Cliente" actionListener="#{alquilerItemsBean.registrarCliente(nombreA.value,documentoA.value,telefonoA.value,direccionA.value, emailA.value, vetadoA.value)}" />
+		<p:dataTable id="cliente_table" var="cliente" value="#{alquilerItemsBean.consultarClientes()}">
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
+
