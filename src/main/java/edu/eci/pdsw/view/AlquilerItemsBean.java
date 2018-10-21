@@ -150,6 +150,10 @@ public class AlquilerItemsBean extends BasePageBean {
 		docu=Math.toIntExact(ldocu);
 		
 	}
+	
+	public void t() {
+		System.out.println("fwedwebewrsbaewweewaweeawea2");
+	}
 
 
 
