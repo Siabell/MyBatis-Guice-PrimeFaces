@@ -75,17 +75,13 @@ public class AlquilerItemsBean extends BasePageBean {
 		return this.docu;
 	}
 	public void setDocu(int doc){
-		System.out.println(valido+"valor de valido------");
 		if(valido) {
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
 			this.docu=doc;
 		}
 	}
 	
 	public void setDocu(String  doc){
-		System.out.println(valido+"valor de valido------");
 		if(valido) {
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
 			this.docu=Integer.parseInt(doc);
 		}
 	}
@@ -96,7 +92,6 @@ public class AlquilerItemsBean extends BasePageBean {
 			valido =true;
 		}
 		else{valido=false;}
-		System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz "+valido);
 	}
 	
 	public boolean getDisponible(){
@@ -153,13 +148,10 @@ public class AlquilerItemsBean extends BasePageBean {
 	public void actualizarCliente(ActionEvent event) {
 		long ldocu = (long) event.getComponent().getAttributes().get("doc");
 		docu=Math.toIntExact(ldocu);
-		System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu "+docu);
 		
 	}
 
-	public void imprimir () {
-		System.out.println("hola como esats? --------------");
-	}
+
 
 
 }
