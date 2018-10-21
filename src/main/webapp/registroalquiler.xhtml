@@ -11,6 +11,8 @@
 <h:body onload="#{alquilerItemsBean.turnValido(0)}">
 	<h1>registrar alquiler</h1>
 	<h:form id="alquiler_form" >
+		Cliente:
+		<h:outputText id="docu" value="#{alquilerItemsBean.docu}" converter="javax.faces.Integer" /><br></br>
 		Id item: 
 		<p:inputText id="idItem"  binding="#{idItem}" required="true" label="idItem">
 		</p:inputText>
@@ -18,14 +20,16 @@
 		<p:inputText id="cantDias" binding="#{cantDias}" required="true" label="cantDias">
 		</p:inputText>
 		
-		<p:commandButton id="calcular" update="valorR" value="calcular valor" actionListener="#{alquilerItemsBean.consultarValorRenta(idItem.value,cantDias.value)}" />
+		<p:commandButton onload="#{alquilerItemsBean.turnValido(0)}" id="calcular" update="alquiler_form" value="calcular valor" actionListener="#{alquilerItemsBean.consultarValorRenta(idItem.value,cantDias.value)}" >
+			
+		</p:commandButton>
 		<h:outputLabel id="valorR" value="#{alquilerItemsBean.valor}" /><br></br>
 		
 		
-		<p:commandButton id="agregar" update="ocupado" value="agregar alquiler" actionListener="#{alquilerItemsBean.registrarAlquiler(idItem.value,cantDias.value)}" />	
-		<h:outputLabel id="ocupado" value="#{alquilerItemsBean.disponible}" /><br></br>
+		<p:commandButton id="agregar" update="alquiler_form" value="agregar alquiler" actionListener="#{alquilerItemsBean.registrarAlquiler(idItem.value,cantDias.value)}" />	
+		<h:outputLabel id="ocupado" value="#{alquilerItemsBean.disponible}" /><br></br><br></br>
 		
-		
+		<p:button outcome="registrocliente"  value="Back to cliente" /><br></br><br></br>
 		
 		<p:dataTable id="items_table" var="itemR" value="#{alquilerItemsBean.consultarItemsCliente()}">
 			<p:column headerText="id">

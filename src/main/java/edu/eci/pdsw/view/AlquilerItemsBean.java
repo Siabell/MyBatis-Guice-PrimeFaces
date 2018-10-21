@@ -8,10 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import edu.eci.pdsw.samples.entities.Cliente;
@@ -21,12 +23,13 @@ import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
 
 
-@ManagedBean(name = "alquilerItemsBean")
-@RequestScoped
+@SuppressWarnings("deprecation")
+@ManagedBean(name = "alquilerItemsBean", eager=true)
+@SessionScoped
 
 public class AlquilerItemsBean extends BasePageBean {
 	
-	@ManagedProperty(value = "#{param.docu}")
+	
 	private int docu;
 	
 	public int valor=0;
@@ -72,14 +75,23 @@ public class AlquilerItemsBean extends BasePageBean {
 		return this.docu;
 	}
 	public void setDocu(int doc){
-		System.out.println(valido);
+		System.out.println(valido+"valor de valido------");
 		if(valido) {
 			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
 			this.docu=doc;
 		}
 	}
 	
+	public void setDocu(String  doc){
+		System.out.println(valido+"valor de valido------");
+		if(valido) {
+			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"+doc);
+			this.docu=Integer.parseInt(doc);
+		}
+	}
+	
 	public void turnValido(int bol) {
+		valor=0;
 		if(bol==1) {
 			valido =true;
 		}
@@ -121,6 +133,7 @@ public class AlquilerItemsBean extends BasePageBean {
 		}
 	}
 	
+	
 	public void consultarValorRenta(int idItem,int cantDias) throws ExcepcionServiciosAlquiler {
 		try {
 			
@@ -128,7 +141,7 @@ public class AlquilerItemsBean extends BasePageBean {
 			
 		
 		} catch (ExcepcionServiciosAlquiler e) {
-			
+			disponible=false;
 			throw e;
 		}
 		
@@ -136,6 +149,17 @@ public class AlquilerItemsBean extends BasePageBean {
 	
 	public void setValor(int a) {valor =a;}
 	public int getValor() {return valor;}
+	
+	public void actualizarCliente(ActionEvent event) {
+		long ldocu = (long) event.getComponent().getAttributes().get("doc");
+		docu=Math.toIntExact(ldocu);
+		System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu "+docu);
+		
+	}
+
+	public void imprimir () {
+		System.out.println("hola como esats? --------------");
+	}
 
 
 }
