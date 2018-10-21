@@ -6,9 +6,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import com.google.inject.Inject;
 
 import edu.eci.pdsw.sampleprj.dao.TipoItemDAO;
-import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper;
-import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.TipoItem;
 
 public class MyBATISTipoItemDAO implements TipoItemDAO{

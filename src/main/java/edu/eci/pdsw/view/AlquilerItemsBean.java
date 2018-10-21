@@ -1,23 +1,14 @@
 package edu.eci.pdsw.view;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import edu.eci.pdsw.samples.entities.Cliente;
-import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
@@ -151,9 +142,6 @@ public class AlquilerItemsBean extends BasePageBean {
 		
 	}
 	
-	public void t() {
-		System.out.println("fwedwebewrsbaewweewaweeawea2");
-	}
 
 
 

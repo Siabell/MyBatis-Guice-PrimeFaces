@@ -1,8 +1,5 @@
 package edu.eci.pdsw.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.inject.Inject;
 //import edu.eci.pdsw.sampleprj.dao.PersistenceException;
 import edu.eci.pdsw.samples.entities.Cliente;
@@ -22,8 +19,8 @@ import org.quicktheories.core.Gen;
 import static org.quicktheories.QuickTheory.qt;
 import static org.quicktheories.generators.Generate.*;
 import static org.quicktheories.generators.SourceDSL.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
 
 public class ServiciosAlquilerTest {
 
