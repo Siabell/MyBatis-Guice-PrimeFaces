@@ -6,4 +6,5 @@ deployment:
   staging:
     branch: master
     heroku: 
-      appname: MyBatis-Guice-PrimeFaces
+      appname: mybatis-videorental-lab7
+
