@@ -13,43 +13,46 @@
 	<h:form id="cliente_form" >
 		nombre: 
 		<p:inputText id="nombreA"  binding="#{nombreA}" required="true" label="nombre"/>
-		documento: 
-		<p:inputText id="documentoA" binding="#{documentoA}" required="true" label="documento"/>
-		Telefono: 
-		<p:inputText id="telefonoA" binding="#{telefonoA}" required="true" label="telefono"/><br></br>
-		Direccion: 
-		<p:inputText id="direccionA" binding="#{direccionA}" required="true" label="direccion"/>
+ 		documento: 
+ 		<p:inputText id="documentoA" binding="#{documentoA}" required="true" label="documento"/>
+ 		Telefono: 
+ 		<p:inputText id="telefonoA" binding="#{telefonoA}" required="true" label="telefono"/><br></br>
+ 		Direccion: 
+ 		<p:inputText id="direccionA" binding="#{direccionA}" required="true" label="direccion"/>
 		email: 
 		<p:inputText id="emailA" binding="#{emailA}" required="true" label="email"/>
 		vetado: 
 		<p:selectBooleanCheckbox id="vetadoA" binding="#{vetadoA}" /><br></br><br></br>
 		<p:commandButton id="agregar" update="cliente_form" value="agregar Cliente" actionListener="#{alquilerItemsBean.registrarCliente(nombreA.value,documentoA.value,telefonoA.value,direccionA.value, emailA.value, vetadoA.value)}" /><br></br><br></br>
+		
 		<p:dataTable id="cliente_table" var="cliente" value="#{alquilerItemsBean.consultarClientes()}">
-				<p:column headerText="nombre">
-						<h:outputText value="#{cliente.nombre}" />
-					</p:column>
-					<p:column headerText="documento">
-						<h:outputText value="#{cliente.documento}" />
-					</p:column>
-					<p:column headerText="telefono">
-						<h:outputText value="#{cliente.telefono}" />
-					</p:column>
-					<p:column headerText="direccion">
-						<h:outputText value="#{cliente.direccion}" />
-					</p:column>
-					<p:column headerText="email">
-						<h:outputText value="#{cliente.email}" />
-					</p:column>
-					<p:column headerText="vetado">
-						<h:outputText value="#{cliente.vetado}" />
-					</p:column>
-					<p:column headerText="Rentados">
-						<p:button  outcome="registroalquiler?docu=#{cliente.documento}" value="View Rentados"  />
-					</p:column>
-
+		
+		<p:column headerText="nombre">
+			<h:outputText value="#{cliente.nombre}" />
+		</p:column>
+		<p:column headerText="documento">
+			<h:outputText value="#{cliente.documento}" />
+		</p:column>
+		<p:column headerText="telefono">
+			<h:outputText value="#{cliente.telefono}" />
+		</p:column>
+		<p:column headerText="direccion">
+			<h:outputText value="#{cliente.direccion}" />
+		</p:column>
+		<p:column headerText="email">
+			<h:outputText value="#{cliente.email}" />
+		</p:column>
+		<p:column headerText="vetado">
+			<h:outputText value="#{cliente.vetado}" />
+		</p:column>
+		<p:column headerText="Rentados">
+		
+			<p:commandButton value="items" actionListener="#{alquilerItemsBean.actualizarCliente}" process="@this" async="true" ajax="true" action="registroalquiler?faces-redirect=true">
+                        <f:attribute name="doc" value="#{cliente.documento}"/>
+            </p:commandButton>
+		</p:column>
 		</p:dataTable>
 	</h:form>
-
 </h:body>
 </html>
 
