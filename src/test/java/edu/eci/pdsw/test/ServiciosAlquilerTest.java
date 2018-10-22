@@ -12,6 +12,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 import static org.junit.Assert.*;
 
@@ -22,11 +25,11 @@ import static org.quicktheories.generators.SourceDSL.*;
 //import java.sql.Connection;
 //import java.sql.DriverManager;
 
-public class ServiciosAlquilerTest {
+public class ServiciosAlquilerTest{
 
     @Inject
     private SqlSession sqlSession;
-
+    @Inject
     ServiciosAlquiler serviciosAlquiler;
 
     public ServiciosAlquilerTest() {
@@ -59,6 +62,7 @@ public class ServiciosAlquilerTest {
     	 qt().forAll(ServiciosAlquilerGenerator.clientes()).check( cliente -> {
     		boolean clienteAgregado = false;
     		Optional<Cliente> client = Optional.empty();
+    		serviciosAlquiler = ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
          	try {
          		serviciosAlquiler.registrarCliente(cliente);         		
          	} 
@@ -86,6 +90,7 @@ public class ServiciosAlquilerTest {
     	qt().forAll(ServiciosAlquilerGenerator.items()).check( item -> {
     		boolean ItemAgregado = false;
     		Optional<Item> itemOpt = Optional.empty();
+    		serviciosAlquiler = ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
          	try {
          		serviciosAlquiler.registrarItem(item);
          	} 
@@ -106,7 +111,35 @@ public class ServiciosAlquilerTest {
 			return ItemAgregado; 
     	 });
     }
+  
     
+    private static Gen<Integer> dias(){
+		return integers().between(1,50);
+	}
     
-    
+    /* public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias)*/
+    @Test
+    public void registrarAlquilerCliente() {
+    	qt().forAll(dates().withMilliseconds(0),ServiciosAlquilerGenerator.clientes(),ServiciosAlquilerGenerator.items(),dias()).check( (fecha,cliente,item,numDias) -> {
+    		boolean registroAlquilado = false;
+    		java.sql.Date sqlDate = new java.sql.Date(fecha.getTime());
+    		Optional<List<ItemRentado>> rentados = Optional.empty();
+    		try {
+    			serviciosAlquiler.registrarItem(item);
+    			serviciosAlquiler.registrarCliente(cliente);
+    			serviciosAlquiler.registrarAlquilerCliente(sqlDate, cliente.getDocumento(), item, numDias);
+    			Cliente client = serviciosAlquiler.consultarCliente(cliente.getDocumento());
+    			rentados =  Optional.of(serviciosAlquiler.consultarItemsCliente(client.getDocumento()));
+    			
+    		} catch (ExcepcionServiciosAlquiler e) {
+                System.out.println(e.getMessage());
+                registroAlquilado = false;
+            }
+    		if (rentados.isPresent() && !rentados.get().isEmpty()) {
+    			registroAlquilado = true;
+         	}
+    		return registroAlquilado;
+    		});
+    	}
+ 
 }

@@ -84,7 +84,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    /**
-    * falta arreglar
+    * 
     */
    @Override
    public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
